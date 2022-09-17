@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int main()
+{
+
+float EUR;
+float HRK;
+float HRK_RATE = 7.52;
+float USD;
+float USD_RATE = 1.02;
+float GBP;
+float GBP_RATE = 0.87;
+float input;
+
+/* ---------------------------------------------------------------------- */
+
+    printf("This Currency-Converter converts EUR to HRK, GBP & USD");
+    printf("\n1. For EUR-USD\n2. For EUR-HRK\n3. For EUR-GBP\n");
+    scanf("%f", &input);
+
+/* ----------------------------------------------------------------------- */
+
+    if (input == 1) {
+        printf("Please Enter The Amount of EUR\n");
+        scanf("%f", &EUR);
+        
+        USD = EUR * USD_RATE;
+        printf("%.2f EUR = %.2f USD\n", EUR, USD);
+}
+    else if (input == 2) {
+        printf("Please Enter The Amount of EUR\n");
+        scanf("%f", &EUR);
+
+        HRK = EUR * HRK_RATE;
+        printf("%.2f EUR = %.2f HRK\n", EUR, HRK);
+}
+    else if (input == 3) {
+        printf("Please Enter The Amount of EUR\n");
+        scanf("%f", &EUR);
+
+        GBP = EUR * GBP_RATE;
+        printf("%.2f EUR = %.2f GBP\n", EUR, GBP);
+    } else {
+        printf("Invalid Input, Please Try Again.");
+
+}
+return 0;
+}
