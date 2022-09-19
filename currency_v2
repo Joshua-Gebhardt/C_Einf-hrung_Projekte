@@ -1,0 +1,176 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+#define     EUR_P     "-EUR"
+#define     EUR        1
+#define     USD_P      "-USD"
+#define     USD        1
+#define     GBP        0.88
+#define     GBP_P      "-GBP"
+#define     HRK        7.52
+#define     HRK_P      "-HRK"
+#define     JPY        143.2
+#define     JPY_P      "-JPY"
+#define     HRK_base   
+
+
+
+
+int main ( int argc, char *argv[] )
+{
+
+    float result;
+    float betrag; 
+
+    if ( argc < 3 ) 
+    {
+        printf( "Nicht genug Parameter übergeben.\nSyntax: [1. Währung] [2. Währung] [Betrag]" );
+    }   
+    
+    else if ( (strcmp(argv[1], EUR_P) == 0) && (strcmp(argv[2], USD_P) == 0) ) 
+    {
+        betrag = atof(argv[3]);
+        result = betrag * USD;
+        printf("%f EUR -> %f USD\n", betrag, result);
+    }
+    
+    else if ( strcmp(argv[1], EUR_P) == 0 && strcmp(argv[2], GBP_P) == 0 ) 
+    {
+        betrag = atof(argv[3]);
+        result = betrag * GBP;
+        printf( "%f EUR -> %f GBP\n", betrag, result );
+    }
+
+    else if ( strcmp(argv[1], GBP_P) == 0 && strcmp(argv[2], EUR_P) == 0 ) 
+    {
+        betrag = atof(argv[3]);
+        result = betrag * EUR;
+        printf("%f GBP -> %f EUR\n", betrag, result);
+    }
+
+    else if ( strcmp(argv[1], EUR_P) == 0 && strcmp(argv[2], HRK_P) == 0 )
+    {
+        betrag = atof(argv[3]);
+        result = betrag * HRK;
+        printf("%f EUR -> %f HRK\n", betrag, result);
+    }
+
+    else if ( strcmp(argv[1], HRK_P) == 0 && strcmp(argv[2], EUR_P ) == 0 ) 
+    {
+        betrag = atof(argv[3]);
+        result = betrag * EUR;
+        printf("%f HRK -> %f EUR\n", betrag, result); 
+    }
+    
+    else if ( strcmp(argv[1], EUR_P) == 0 && strcmp(argv[2], JPY_P) == 0 ) 
+    {
+        betrag = atof(argv[3]);
+        result = betrag * JPY;
+        printf("%f EUR -> %f JPY\n", betrag, result);
+    }
+
+    else if ( strcmp(argv[1], JPY_P) == 0 && strcmp(argv[2], EUR_P) == 0 ) 
+    {
+        betrag = atof(argv[3]);
+        result = betrag * EUR;
+        printf("%f JPY -> %f EUR\n", betrag, result);
+    } 
+
+    else if ( strcmp(argv[1], HRK_P) == 0 && strcmp(argv[2], USD_P) == 0 ) 
+    {
+        betrag = atof(argv[3]);
+        result = betrag * USD;
+        printf("%f HRK -> %f USD\n", betrag, result)
+    }
+
+     else if ( strcmp(argv[1], HRK_P) == 0 && strcmp(argv[2], GBP_P) == 0 )
+     {
+        betrag = atof(argv[3]);
+        result = betrag * GBP;
+        printf("%f HRK -> %f GBP\n", betrag, result)
+     }
+
+    else if ( strcmp(argv[1], HRK_P) == 0 && strcmp(argv[2], JPY_P) == 0 )
+    {
+        betrag = atof(argv[3]);
+        result = betrag * JPY;
+        printf("%f HRK -> %f JPY\n", betrag, result)
+    }
+
+    else if ( strcmp(argv[1], GBP_P) == 0 && strcmp(argv[2], USD_P) == 0 )
+    {
+        betrag = atof(argv[3]);
+        result = betrag * USD;
+        printf("%f GBP -> %f USD\n", betrag, result)
+    }
+    
+    else if ( strcmp(argv[1], GBP_P) == 0 && strcmp(argv[2], HRK_P) == 0 )
+    {
+        betrag = atof(argv[3]);
+        result = betrag * HRK;
+        printf("%f GBP -> %f HRK\n", betrag, result)
+    }
+
+    else if ( strcmp(argv[1], GBP_P) == 0 && strcmp(argv[2], JPY_P) == 0 )
+    {
+        betrag = atof(argv[3]);
+        result = betrag * JPY;
+        printf("%f GBP -> %f JPY\n", betrag, result)
+    }
+
+    else if ( strcmp(argv[1], USD_P) == 0 && strcmp(argv[2], GBP_P) == 0 )
+    {
+        betrag = atof(argv[3]);
+        result = betrag * GBP;
+        printf("%f USD -> %f GBP\n", betrag, result)
+    }
+
+     else if ( strcmp(argv[1], USD_P) == 0 && strcmp(argv[2], HRK_P) == 0 )
+     {
+        betrag = atof(argv[3]);
+        result = betrag * HRK;
+        printf("%f USD -> %f HRK\n", betrag, result)
+     }
+
+     else if ( strcmp(argv[1], USD_P) == 0 && strcmp(argv[2], JPY_P) == 0 )
+     {
+        betrag = atof(argv[3]);
+        result = betrag * JPY;
+        printf("%f USD -> %f JPY\n", betrag, result)
+     }
+
+      else if ( strcmp(argv[1], JPY_P) == 0 && strcmp(argv[2], USD_P) == 0 )
+      {
+        betrag = atof(argv[3]);
+        result = betrag * USD;
+        printf("%f JPY -> %f USD\n", betrag, result)
+      }
+
+      else if ( strcmp(argv[1], JPY_P) == 0 && strcmp(argv[2], HRK_P) == 0 )
+      {
+        betrag = atof(argv[3]);
+        result = betrag * HRK;
+        printf("%f JPY -> %f HRK\n", betrag, result)
+      }
+
+      else if ( strcmp(argv[1], JPY_P) == 0 && strcmp(argv[2], GBP_P) == 0 )
+      {
+        betrag = atof(argv[3]);
+        result = betrag * GBP;
+        printf("%f JPY -> %f GBP\n", betrag, result)
+      }
+
+      else if ( argc > 3 ) 
+      {
+        printf("Zu viele Parameter übergeben.\nSyntax: [1. Währung] [2. Währung] [Betrag] ");
+      }
+
+    else 
+    {
+        printf("Ungültige Parameter übergeben.\nSyntax: [1. Währung] [2. Währung] [Betrag] ");
+    }
+
+result = 0;
+}
