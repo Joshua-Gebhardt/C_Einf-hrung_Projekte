@@ -1,0 +1,179 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main( int argc, char *argv[] )
+{
+
+    int i = 0;
+    int j = 0;
+    int k = 0;
+
+    char encode[]   =   "-enc";
+    char decode[]   =   "-dec";
+    char hilfe[]    =   "[-enc] [-dec] <Text/Cipher>\n -enc = Encode\n -dec = Decode\n";
+
+    char pass[100];
+    int asci_sum[100];
+
+
+    if( argc < 3 )                                                                                                  /* Wenn weniger als 2 Parameter eingegeben werden ( 0. Parameter ausgenommen ) */
+    {
+        printf( "Fehlende Parameter.\n %s\n", hilfe );
+    }
+
+    else if( argc == 3 )                                                                                            /* Wenn 2 Parameter eingegeben werden */
+    {
+
+        if( strcmp( argv[1], encode ) == 0 )                                                                        /* Wenn 1. Parameter = -enc */
+        {
+            printf( "[Encoding]\n Gebe dein Passwort ein:\n" );
+            scanf( "%s", &pass );                                                                                   /* User-Input */
+
+            printf( "Dein Encode:\n" );
+            
+            if( strlen( argv[2] ) == strlen( pass ) )                                                               /* Wenn Laenge Text = Laenge Passwort ist */
+            {
+                for( i = 0; i < strlen( pass ); i++ )
+                {
+                    asci_sum[i] = argv[2][i] + pass[i];                                                             /* ASCII-Werte der einzelnen Buchstaben des Textes ( 2. Parameter ) und des Passworts werden addiert und in "asci_sum" gespeichert */
+
+                    for( j = 0; j < 2; j++ )                                                                        /* Loop um den ASCII-Wert im druckbaren Bereich ( 32-126 ) zu halten wenn groesser als 126 */
+                    {
+                        if( asci_sum[i] > 126 )
+                        {
+                            asci_sum[i] = asci_sum[i] - 94;
+                        }
+                    }
+                    printf( "%c", asci_sum[i] );                                                                    /* Ausgabe des Ciphers entsprechend der addierten ASCII-Werte */
+                }
+            }
+            
+            else if( strlen( argv [2] ) > strlen( pass ) )                                                          /* Wenn Laenge Text > Lanege Passworts */
+            {
+                for( i = 0, j = 0; i < strlen( argv[2] ); i++, j++ )
+                {
+                    if( j > strlen( pass ) - 1 )                                                                    /* Wenn Zaehler j > Laenge Passwort ---> j beginnt wieder bei 0, Passwort beginnt von vorne */
+                    {
+                        j = 0;
+                    }
+                    asci_sum[i] = argv[2][i] + pass[j];                                                             /* ASCII-Werte werden addiert */
+
+                    for( k = 0; k < 2; k++ )                                                                        /* Loop um den ASCII-Wert im druckbaren Bereich zu halten */
+                    {
+                        if( asci_sum[i] > 126 )
+                        {
+                            asci_sum[i] = asci_sum[i] - 94;
+                        }
+                    }
+                    printf( "%c", asci_sum[i] );                                                                    /* Ausgabe Cipher */
+                }
+            }
+
+            else
+            {
+                for(i = 0, j = 0; i < strlen( pass ); i++, j++ )                                                    /* Wenn Laenge Text < Laenge Passwort */
+                {
+                    if( j > strlen( argv[2] ) - 1 )                                                                 /* Wenn Zaehler j > Laenge Text ---> j beginnt wieder bei 0 */
+                    {
+                        j = 0;
+                    }
+                    asci_sum[i] = argv[2][j] + pass[i];
+
+                    for( k = 0; k < 2; k++ )                                                                        /* Loop um den ASCII-Wert im druckbaren Bereich zu halten */
+                    {
+                        if( asci_sum[i] > 126 )
+                        {
+                            asci_sum[i] = asci_sum[i] - 94;
+                        }
+                    }
+                    printf( "%c", asci_sum[i] );                                                                    /* Ausgabe Cipher */
+                }
+            }
+
+            printf( "\n" );
+        }
+
+        else if( strcmp( argv[1], decode ) == 0 )                                                                   /* Wenn 1. Parameter = -dec */
+        {
+            printf( "[Decoding]\n Gebe dein Passwort ein\n" );
+            scanf( "%s", &pass );                                                                                   /* User-Input */
+
+            printf( "Dein Decode:\n" );
+
+            if( strlen( argv[2] ) == strlen( pass ) )
+            {
+                for( i = 0; i < strlen( pass ); i++ )
+                {
+                    asci_sum[i] = argv[2][i] - pass[i];                                                             /* ASCII-Werte des Passworts wird vom Cipher subtrahiert und in "asci_sum" gespeichert */
+
+                    for( k = 0; k < 2; k++ )                                                                        /* Loop um den ASCII-Wert im druckbaren Bereich zu halten */
+                    {
+                        if( asci_sum[i] < 32 )
+                        {
+                            asci_sum[i] = asci_sum[i] + 94;
+                        }
+                    }
+                    printf( "%c", asci_sum[i] );                                                                    /* Ausgabe Text */
+                }
+            }
+
+            else if( strlen( argv [2] ) > strlen( pass ) )
+            {
+                for( i = 0, j = 0; i < strlen( argv[2] ); i++, j++ )
+                {
+                    if( j > strlen( pass ) - 1 )
+                    {
+                        j = 0;
+                    }
+                    asci_sum[i] = argv[2][i] - pass[j];
+
+                    for( k = 0; k < 2; k++ )
+                    {
+                        if( asci_sum[i] < 32 )
+                        {
+                            asci_sum[i] = asci_sum[i] + 94;
+                        }
+                    }
+                    printf( "%c", asci_sum[i] );
+                }
+            }
+
+            else
+            {
+                for(i = 0, j = 0; i < strlen( pass ); i++, j++ )
+                {
+                    if( j > strlen( argv[2] ) - 1 )
+                    {
+                        j = 0;
+                    }
+                    asci_sum[i] = argv[2][j] + pass[i];
+
+                    for( k = 0; k < 2; k++ )
+                    {
+                        if( asci_sum[i] < 32 )
+                        {
+                            asci_sum[i] = asci_sum[i] + 94;
+                        }
+                    }
+                    printf( "%c", asci_sum[i] );
+                }
+            }
+
+            printf( "\n" );
+        }
+
+        else
+        {
+            printf( "Falsche Parameter eingegeben.\n %s", hilfe );
+        }
+
+    }
+
+    else
+    {
+        printf( "Zu viele Parameter eingegeben\n %s", hilfe );                                                      /* Wenn mehr als 2 Parameter eingegeben werden */
+    }
+
+    return 0;
+}
